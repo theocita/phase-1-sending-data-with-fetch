@@ -1,17 +1,14 @@
 
 function submitData(name, email){
-    fetch('http://localhost:3000/users',{
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-        "Accept" : "application/json"
-    },
-    body: JSON.stringify({name, email})
-})
-.then(res => res.json())
-.then(data => console.log(data))
-.catch(function (error){
-    alert('Unauthorized Access');
-    console.log(error.message)
-})
-}
+    return fetch('http://localhost:3000/users', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept" : "application/json"
+        },
+        body: JSON.stringify({name, email})
+    })
+        .then(res => res.json())
+        .then(data => document.body.innerHTML = data.id)
+        .catch(message => document.body.append(message.message))
+} 
